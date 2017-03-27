@@ -1,0 +1,26 @@
+<nav class="nav has-shadow" *ngIf="isLogedIn">
+    <div class="container">
+        <div class="nav-left">
+            <a class="nav-item" routerLink="">
+                <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
+            </a>
+            <a routerLink="/products" routerLinkActive="is-active" class="nav-item is-tab is-hidden-mobile">Product</a>
+            <a routerLink="/about" routerLinkActive="is-active" class="nav-item is-tab is-hidden-mobile">About</a>
+        </div>
+        <span class="nav-toggle">
+            <span></span>
+        <span></span>
+        <span></span>
+        </span>
+        <div class="nav-right nav-menu">
+            <span class="nav-item">
+            <a class="button is-danger" (click)="onLogoutClick()">
+                <span class="icon">
+          <i class="fa fa-power-off"></i>
+        </span>
+            <span>Logout</span>
+            </a>
+            </span>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,41 @@
+<div class="is-fullheight hero">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-mobile">
+                <div class="column is-4 is-offset-4">
+
+                    <form [formGroup]="loginForm" novalidate autocomplete="off" (ngSubmit)="onLoginClick()">
+                        <div class="field">
+                            <div class="control has-icon">
+                                <input [ngClass]="{'is-danger': loginForm.controls.username.invalid && loginForm.controls.username.touched}" formControlName="username" required class="input" name="username" type="text" placeholder="Username">
+                                <span class="icon is-small"><i class="fa fa-envelope"></i></span>
+
+                                <div *ngIf="loginForm.controls.username.touched">
+                                    <p class="help is-danger" *ngIf="loginForm.controls.username.hasError('minLength')">This username too short</p>
+                                    <p class="help is-danger" *ngIf="loginForm.controls.username.hasError('required')">This username is required</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control has-icon">
+                                <input [ngClass]="{'is-danger': loginForm.controls.password.invalid && loginForm.controls.password.touched}" formControlName="password" required class="input" name="password" type="password" placeholder="Password">
+                                <span class="icon is-small"><i class="fa fa-lock"></i></span>
+
+                                <div *ngIf="loginForm.controls.password.touched">
+                                    <p class="help is-danger" *ngIf="loginForm.controls.password.hasError('required')">This password is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <p class="control">
+                                <button [disabled]="loginForm.invalid" type="submit" [class.is-loading]="isFetching === true" class="button is-success">Login</button>
+                                Or <a routerLink="/auth/register">Register</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

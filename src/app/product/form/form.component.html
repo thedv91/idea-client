@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="columns is-mobile">
+        <div class="column is-4 is-offset-4">
+            <form name="form-register" autocomplete="off" [formGroup]="formProduct" (ngSubmit)="onFormSubmit()">
+                <div class="field">
+                    <div class="control has-icon">
+                        <input class="input" required [ngClass]="{'is-danger': formProduct.controls.code.invalid && formProduct.controls.code.touched}"
+                            formControlName="code" name="code" type="text" placeholder="Code">
+                        <span class="icon is-small"><i class="fa fa-user"></i></span>
+
+                        <div *ngIf="formProduct.controls.code.touched">
+                            <p class="help is-danger" *ngIf="formProduct.controls.code.hasError('required')">This code is required</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.code.hasError('minlength')">This code is too short</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control has-icon">
+                        <input appEmailValidator class="input" required [ngClass]="{'is-danger': formProduct.controls.name.invalid && formProduct.controls.name.touched}"
+                            formControlName="name" name="name" type="text" placeholder="Name">
+                        <span class="icon is-small"><i class="fa fa-envelope"></i></span>
+
+                        <div *ngIf="formProduct.controls.name.touched">
+                            <p class="help is-danger" *ngIf="formProduct.controls.name.hasError('required')">This email is required</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.name.hasError('minlength')">This email is too short</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <button [disabled]="formProduct.invalid" type="submit" [class.is-loading]="isFetching" class="button is-success">Save</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
