@@ -11,7 +11,7 @@ import { environment } from "environments/environment";
 
 
 @Component({
-    selector: 'app-product-list',
+    selector: 'app-admin-product-list',
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css']
 })
@@ -76,7 +76,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     page(offset, limit) {
         this.productService.getList().subscribe((results) => {
-            this.products = results;
             this.count = results.length;
 
             const start = offset * limit;

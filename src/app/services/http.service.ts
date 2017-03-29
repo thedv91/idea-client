@@ -6,12 +6,10 @@ import { environment } from "environments/environment";
 @Injectable()
 export class HttpService {
 
-    private urlRoot: string = environment.devHost;
+    private urlRoot: string = environment.host + '/api/v1';
 
     constructor(private _http: Http) {
-        if (environment.production) {
-            this.urlRoot = environment.prodHost
-        }
+
     }
 
     private _createAuthHeaders(): Headers {

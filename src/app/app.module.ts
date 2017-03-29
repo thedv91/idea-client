@@ -22,6 +22,7 @@ import { SidebarComponent } from "app/common/sidebar/sidebar.component";
 import { AuthService } from "app/auth/auth.service";
 import { AboutComponent } from './page/about/about.component';
 import { PipesModule } from "app/pipes/pipes.module";
+import { AdminModule } from "app/modules/admin/admin.module";
 
 
 
@@ -46,6 +47,7 @@ import { PipesModule } from "app/pipes/pipes.module";
         ServicesModule.forRoot(),
         ProductModule.forRoot(),
         ComponentsModule.forRoot(),
+        AdminModule.forRoot(),
         PipesModule,
         NgxDatatableModule
     ],

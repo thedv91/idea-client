@@ -7,18 +7,15 @@ import { FileUploader, FileItem, ParsedResponseHeaders } from "ng2-file-upload";
 import { PageUpload } from "app/services/page-upload";
 import { environment } from "environments/environment";
 
-let URL: string = environment.devHost + '/upload';
-if (environment.production) {
-    URL = environment.prodHost + '/upload';
-}
 
+const URL: string = environment.host + '/api/v1/upload';
 
 interface UploadImageResponse {
     url: string
 }
 
 @Component({
-    selector: 'app-product-form',
+    selector: 'app-admin-product-form',
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.css']
 })
@@ -26,6 +23,7 @@ interface UploadImageResponse {
 
 export class FormComponent implements OnInit {
 
+    baseUrl = environment.host;
     uploader: PageUpload = new PageUpload({
         url: URL,
         autoUpload: true,

@@ -4,13 +4,14 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule } from "ng2-file-upload";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 
-import { ProductRoutingModule } from './product-routing.module';
 import { ProductListComponent } from './product-list.component';
+import { FormComponent } from './form/form.component';
 import { DetailComponent } from './detail/detail.component';
 
 import { ComponentsModule } from "app/components/components.module";
 import { PipesModule } from "app/pipes/pipes.module";
 import { SharedModule } from "app/shared/shared.module";
+import { ProductRoutingModule } from "app/modules/admin/product/product-routing.module";
 
 
 
@@ -27,7 +28,7 @@ import { SharedModule } from "app/shared/shared.module";
         NgxDatatableModule,
         SharedModule.forRoot()
     ],
-    declarations: [ProductListComponent, DetailComponent]
+    declarations: [ProductListComponent, FormComponent, DetailComponent]
 })
 export class ProductModule {
     static forRoot(): ModuleWithProviders {

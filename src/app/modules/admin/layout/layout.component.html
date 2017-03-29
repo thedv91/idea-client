@@ -1,0 +1,21 @@
+<div class="columns">
+    <aside class="column is-2 aside hero is-fullheight is-hidden-mobile">
+        <div>
+            <div class="uploader has-text-centered">
+                <a class="button">
+                    <i class="fa fa-upload"></i>
+                </a>
+            </div>
+            <div class="main">
+                <div class="title">Main</div>
+                <a href="#" routerLink="/admin/dashboard" routerLinkActive="active" class="item"><span class="icon"><i class="fa fa-home"></i></span><span class="name">Dashboard</span></a>
+                <a href="#" routerLink="/admin/products" routerLinkActive="active" class="item"><span class="icon"><i class="fa fa-map-marker"></i></span><span class="name">Product</span></a>
+                <a href="#" routerLink="/admin/users" routerLinkActive="active" class="item"><span class="icon"><i class="fa fa-user"></i></span><span class="name">Users</span></a>
+                <a href="#" routerLink="/admin/medias" routerLinkActive="active" class="item"><span class="icon"><i class="fa fa-folder-o"></i></span><span class="name">Medias</span></a>
+            </div>
+        </div>
+    </aside>
+    <div class="content column is-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>

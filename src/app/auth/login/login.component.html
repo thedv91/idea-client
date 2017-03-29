@@ -1,41 +1,50 @@
-<div class="is-fullheight hero">
+<section class="hero is-fullheight is-dark is-bold">
+
     <div class="hero-body">
         <div class="container">
-            <div class="columns is-mobile">
+            <div class="columns is-vcentered">
                 <div class="column is-4 is-offset-4">
-
-                    <form [formGroup]="loginForm" novalidate autocomplete="off" (ngSubmit)="onLoginClick()">
-                        <div class="field">
+                    <h1 class="title">
+                        Đăng nhập
+                    </h1>
+                    <div class="box">
+                        <form [formGroup]="loginForm" novalidate autocomplete="off" (ngSubmit)="onLoginClick()">
+                            <label class="label">Tên đăng nhập</label>
                             <div class="control has-icon">
-                                <input [ngClass]="{'is-danger': loginForm.controls.username.invalid && loginForm.controls.username.touched}" formControlName="username" required class="input" name="username" type="text" placeholder="Tên đăng nhập">
-                                <span class="icon is-small"><i class="fa fa-envelope"></i></span>
+                                <input [ngClass]="{'is-danger': loginForm.controls.username.invalid && loginForm.controls.username.touched}" formControlName="username"
+                                    required class="input" name="username" type="text" placeholder="Tên đăng nhập">
+                                <span class="icon is-small"><i class="fa fa-user"></i></span>
 
                                 <div *ngIf="loginForm.controls.username.touched">
                                     <p class="help is-danger" *ngIf="loginForm.controls.username.hasError('minLength')">Tên đăng nhâp quá ngắn</p>
                                     <p class="help is-danger" *ngIf="loginForm.controls.username.hasError('required')">Vui lòng điền tên đăng nhập</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="field">
+                            <label class="label">Mật khẩu</label>
                             <div class="control has-icon">
-                                <input [ngClass]="{'is-danger': loginForm.controls.password.invalid && loginForm.controls.password.touched}" formControlName="password" required class="input" name="password" type="password" placeholder="Mật khẩu">
+                                <input [ngClass]="{'is-danger': loginForm.controls.password.invalid && loginForm.controls.password.touched}" formControlName="password"
+                                    required class="input" name="password" type="password" placeholder="Mật khẩu">
                                 <span class="icon is-small"><i class="fa fa-lock"></i></span>
 
                                 <div *ngIf="loginForm.controls.password.touched">
                                     <p class="help is-danger" *ngIf="loginForm.controls.password.hasError('required')">Vui lòng nhập mật khẩu</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="field">
+                            <hr>
                             <p class="control">
                                 <button [disabled]="loginForm.invalid" type="submit" [class.is-loading]="isFetching === true" class="button is-success">Đăng nhập</button>
-                                Hoặc <a routerLink="/auth/register">Đăng ký</a>
+                                <button type="reset" class="button is-default">Hủy</button>
                             </p>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <p class="has-text-centered">
+                        <a routerLink="/auth/register">Đăng ký tài khoản</a> |
+                        <a href="#">Quên mật khẩu</a> |
+                        <a href="#">Need help?</a>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+</section>

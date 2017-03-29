@@ -26,7 +26,9 @@
                 "../node_modules/@swimlane/ngx-datatable/release/themes/material.css",
                 "../node_modules/@swimlane/ngx-datatable/release/assets/icons.css"
             ],
-            "scripts": [],
+            "scripts": [
+                "../node_modules/qrious/dist/umd/qrious.js"
+            ],
             "environmentSource": "environments/environment.ts",
             "environments": {
                 "dev": "environments/environment.ts",

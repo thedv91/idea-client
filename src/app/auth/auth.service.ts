@@ -9,10 +9,17 @@ import { AuthModel } from './auth.model';
 import { User } from './user';
 import { HttpService } from "app/services/http.service";
 
+interface AuthResponse {
+    token: string;
+    user: User
+}
+
 @Injectable()
 export class AuthService {
 
     private apiUrl = '/auth';
+
+    authInfo: User;
 
     @Output() onLogout: EventEmitter<boolean> = new EventEmitter();
 
@@ -33,9 +40,10 @@ export class AuthService {
     login(auth: AuthModel): Observable<boolean> {
         return this.http.post(this.apiUrl + '/login', auth)
             .map((res: Response) => {
-                const body = res.json();
+                const body = res.json() as AuthResponse;
                 this.token = body.token;
                 localStorage.setItem('token', this.token);
+                this.authInfo = body.user;
                 this.onLogin.emit(true);
                 return true;
             })
@@ -45,9 +53,10 @@ export class AuthService {
     register(auth: AuthModel): Observable<boolean> {
         return this.http.post(this.apiUrl + '/register', auth)
             .map((res: Response) => {
-                const body = res.json();
+                const body = res.json() as AuthResponse;
                 this.token = body.token;
                 localStorage.setItem('token', this.token);
+                this.authInfo = body.user;
                 this.onLogin.emit(true);
                 return body;
             })
@@ -58,6 +67,7 @@ export class AuthService {
         return Observable.create(observer => {
             localStorage.removeItem('token');
             this.isLogedIn = false;
+            this.authInfo = null;
             this.onLogout.emit(true);
             observer.next(true);
             observer.complete();
@@ -68,7 +78,8 @@ export class AuthService {
     me(): Observable<boolean> {
         return this.http.get(this.apiUrl + '/me')
             .map((res: Response) => {
-                const body = res.json();
+                const body = res.json() as User;
+                this.authInfo = body;
                 this.onLogin.emit(true);
                 return body;
             })
@@ -91,6 +102,7 @@ export class AuthService {
         } else {
             body = error.message ? error.message : error.toString();
         }
+        this.authInfo = null;
         return Observable.throw(body);
     }
 

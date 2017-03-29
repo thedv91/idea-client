@@ -1,4 +1,4 @@
-<nav class="nav has-shadow" *ngIf="isLogedIn">
+<nav class="nav has-shadow">
     <div class="container">
         <div class="nav-left">
             <a class="nav-item" routerLink="">
@@ -6,6 +6,7 @@
             </a>
             <a routerLink="/products" routerLinkActive="is-active" class="nav-item is-tab is-hidden-mobile">Sản phẩm</a>
             <a routerLink="/about" routerLinkActive="is-active" class="nav-item is-tab is-hidden-mobile">Giới thiệu</a>
+            <a *ngIf="isAdmin()" routerLink="/admin" routerLinkActive="is-active" class="nav-item is-tab is-hidden-mobile">Admin</a>
         </div>
         <span class="nav-toggle">
             <span></span>
@@ -14,10 +15,9 @@
         </span>
         <div class="nav-right nav-menu">
             <span class="nav-item logout-button">
-            <a class="button is-danger" (click)="onLogoutClick()">
-                <span class="icon"><i class="fa fa-power-off"></i></span>
-            <span>Đăng xuất</span>
-            </a>
+                <a *ngIf="!isLogedIn" routerLink="/auth/login" class="button">Đăng nhập</a>
+                <a *ngIf="!isLogedIn" routerLink="/auth/register" class="button is-primary">Đăng ký</a>
+                <a *ngIf="isLogedIn" class="button is-danger" (click)="onLogoutClick()"><span class="icon"><i class="fa fa-power-off"></i></span><span>Đăng xuất</span></a>
             </span>
         </div>
     </div>

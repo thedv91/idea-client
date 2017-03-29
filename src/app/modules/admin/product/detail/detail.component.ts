@@ -1,26 +1,21 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
-import { AnonymousSubscription } from "rxjs/Subscription";
 
 import { ProductService } from "app/services/product.service";
-import { environment } from "environments/environment";
+import { AnonymousSubscription } from "rxjs/Subscription";
 
 @Component({
-    selector: 'app-product-detail',
+    selector: 'app-admin-product-detail',
     templateUrl: './detail.component.html',
     styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit, OnDestroy {
 
-    baseUrl = environment.host;
-
     private sub: AnonymousSubscription;
     code: string;
     product: Object | any = {
-        name: '',
-        image: '',
-        code: ''
+        name: ''
     };
 
     constructor(

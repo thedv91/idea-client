@@ -1,4 +1,4 @@
-<div class="container product-form">
+<div class="product-form">
     <form name="form-register" autocomplete="off" [formGroup]="formProduct" (ngSubmit)="onFormSubmit()">
         <div class="columns is-mobile">
             <div class="column is-3">
@@ -6,7 +6,7 @@
 
                 <div *ngIf="formProduct.controls.image.value">
                     <figure class="image is-square">
-                        <img src="{{formProduct.controls.image.value}}">
+                        <img src="{{baseUrl + formProduct.controls.image.value}}">
                     </figure>
                 </div>
             </div>

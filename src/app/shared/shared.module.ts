@@ -15,6 +15,7 @@ import { MinValueValidatorDirective } from './directives/min-value-validator.dir
 import { MaxValueValidatorDirective } from './directives/max-value-validator.directive';
 import { MyCurrencyFormatterDirective } from './directives/my-currency-formatter.directive';
 import { InputUppercaseDirective } from './directives/input-uppercase.directive';
+import { QrCodeDirective } from './directives/qr-code.directive';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { InputUppercaseDirective } from './directives/input-uppercase.directive'
         MinValueValidatorDirective,
         MaxValueValidatorDirective,
         MyCurrencyFormatterDirective,
-        InputUppercaseDirective],
+        InputUppercaseDirective,
+        QrCodeDirective],
     exports: [
         HighlightDirective,
         EqualValidatorDirective,
@@ -41,7 +43,8 @@ import { InputUppercaseDirective } from './directives/input-uppercase.directive'
         MinValueValidatorDirective,
         MaxValueValidatorDirective,
         MyCurrencyFormatterDirective,
-        InputUppercaseDirective],
+        InputUppercaseDirective,
+        QrCodeDirective],
     providers: [
         AuthGuard,
         RoleGuard,
