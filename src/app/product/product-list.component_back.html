@@ -1,0 +1,54 @@
+<a routerLink="/product/create" class="button">Create</a>
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onFilterSubmit()" novalidate autocomplete="off">
+        <div class="field has-addons">
+            <div class="control">
+                <div class="select">
+                    <select formControlName="filterType">
+                        <option value="all">Tất cả</option>
+                        <option value="code">Mã sản phẩm</option>
+                        <option value="name">Tên sản phẩm</option>
+                    </select>
+                </div>
+            </div>
+            <p class="control">
+                <input formControlName="filterVal" class="input" type="text" placeholder="Nhập từ khóa">
+            </p>
+            <p class="control">
+                <button type="submit" [disabled]="form.invalid" class="button">Tìm kiếm</button>
+            </p>
+        </div>
+    </form>
+    <div *ngIf="products">
+        <app-pagination-control [pageChange]="onPageChange" [limitChange]="onLimitChange" [page]="products.page" [pages]="products.pages" [total]="products.total" [limit]="products.limit"></app-pagination-control>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><abbr title="Position">STT</abbr></th>
+                <th>Name</th>
+                <th><abbr title="Played">Code</abbr></th>
+                <th><abbr title="Won">Price</abbr></th>
+                <th><abbr title="Drawn">Total</abbr></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th><abbr title="Position">STT</abbr></th>
+                <th>Name</th>
+                <th><abbr title="Played">Code</abbr></th>
+                <th><abbr title="Won">Price</abbr></th>
+                <th><abbr title="Drawn">Total</abbr></th>
+            </tr>
+        </tfoot>
+        <tbody *ngIf="products">
+            <tr *ngFor="let product of products.docs">
+                <th><input type="checkbox" /></th>
+                <td><a [routerLink]="['/product', product.code]" title="{{product.name}}">{{product.name}}</a></td>
+                <td>{{product.code}}</td>
+                <td>{{product.price | numberFormat}}</td>
+                <td>{{product.total}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

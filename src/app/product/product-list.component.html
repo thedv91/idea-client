@@ -1,31 +1,41 @@
-<a routerLink="/product/create" class="button">Create</a>
-<div class="columns is-multiline" *ngIf="products">
-    <div class="column is-3" *ngFor="let product of products">
-
-        <div class="card">
-            <header class="card-header">
-                <p class="card-header-title">
-                    Component
+<div class="container">
+    <div class="columns product-header">
+        <div class="column is-4">
+            <div class="field">
+                <p class="control">
+                    <input class="input" type="text" placeholder="Nhập tên hoặc mã sản phẩm..." (keyup)="updateFilter($event)">
                 </p>
-                <a class="card-header-icon">
-                    <span class="icon">
-        <i class="fa fa-angle-down"></i>
-      </span>
-                </a>
-            </header>
-            <div class="card-content">
-                <div class="content">
-                    {{product.name}}
-                    <a>@{{product.code}}</a>
-                    <br>
-                    <small>11:09 PM - 1 Jan 2016</small>
-                </div>
             </div>
-            <footer class="card-footer">
-                <a class="card-footer-item">Save</a>
-                <a class="card-footer-item">Edit</a>
-                <a class="card-footer-item">Delete</a>
-            </footer>
+        </div>
+        <span class="column"></span>
+        <div class="column">
+            <div class="is-pulled-right">
+                <button [class.is-loading]="isFetching" type="button" (click)="onDeleteRow()" *ngIf="selected.length" class="button is-danger">
+                    <span class="icon"><i class="fa fa-trash"></i></span>
+                    <span>Delete</span>
+                </button>
+                <a routerLink="/product/create" class="button is-primary">
+                    <span class="icon"><i class="fa fa-plus"></i></span>
+                    <span>Thêm mới</span>
+                </a>
+            </div>
         </div>
     </div>
+
+    <ngx-datatable class="material striped" [rowHeight]="80" [columnMode]="'force'" [rows]="rows" [count]="count" [offset]="offset"
+        [limit]="limit" (page)='onPage($event)' [columns]="columns" [selected]="selected" [selectionType]="'multiClick'" (activate)="onActivate($event)"
+        (select)='onSelect($event)'>
+    </ngx-datatable>
+
+    <ng-template #editTmpl let-row="row" let-value="value" let-i="index">
+        {{value | numberFormat}}
+    </ng-template>
+    <ng-template #nameTmpl let-row="row" let-value="value" let-i="index">
+        <a [routerLink]="['/product', row.code]">{{value}}</a>
+    </ng-template>
+    <ng-template #imageTmpl let-row="row" let-value="value" let-i="index">
+        <figure class="image is-128x128">
+            <img src="{{baseUrl + value}}" alt="">
+        </figure>
+    </ng-template>
 </div>

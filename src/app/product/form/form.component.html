@@ -1,37 +1,77 @@
-<div class="container">
-    <div class="columns is-mobile">
-        <div class="column is-4 is-offset-4">
-            <form name="form-register" autocomplete="off" [formGroup]="formProduct" (ngSubmit)="onFormSubmit()">
+<div class="container product-form">
+    <form name="form-register" autocomplete="off" [formGroup]="formProduct" (ngSubmit)="onFormSubmit()">
+        <div class="columns is-mobile">
+            <div class="column is-3">
+                <input type="file" ng2FileSelect [uploader]="uploader" (change)="onFileChange($event)" />
+
+                <div *ngIf="formProduct.controls.image.value">
+                    <figure class="image is-square">
+                        <img src="{{formProduct.controls.image.value}}">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="column">
                 <div class="field">
                     <div class="control has-icon">
                         <input class="input" required [ngClass]="{'is-danger': formProduct.controls.code.invalid && formProduct.controls.code.touched}"
-                            formControlName="code" name="code" type="text" placeholder="Code">
-                        <span class="icon is-small"><i class="fa fa-user"></i></span>
+                            formControlName="code" name="code" type="text" placeholder="Mã sản phẩm">
+                        <span class="icon is-small"><i class="fa fa-code"></i></span>
 
                         <div *ngIf="formProduct.controls.code.touched">
-                            <p class="help is-danger" *ngIf="formProduct.controls.code.hasError('required')">This code is required</p>
-                            <p class="help is-danger" *ngIf="formProduct.controls.code.hasError('minlength')">This code is too short</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.code.hasError('required')">Nhập mã sản phẩm</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.code.hasError('minlength')">Mã sản phẩm quá ngắn</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.code.hasError('maxlength')">Mã sản phẩm quá dài</p>
+                            <p class="help is-danger" *ngIf="validate.code">{{validate.code}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="field">
                     <div class="control has-icon">
-                        <input appEmailValidator class="input" required [ngClass]="{'is-danger': formProduct.controls.name.invalid && formProduct.controls.name.touched}"
-                            formControlName="name" name="name" type="text" placeholder="Name">
-                        <span class="icon is-small"><i class="fa fa-envelope"></i></span>
+                        <input class="input" required [ngClass]="{'is-danger': formProduct.controls.name.invalid && formProduct.controls.name.touched}"
+                            formControlName="name" name="name" type="text" placeholder="Tên sản phẩm">
+                        <span class="icon is-small"><i class="fa fa-book"></i></span>
 
                         <div *ngIf="formProduct.controls.name.touched">
-                            <p class="help is-danger" *ngIf="formProduct.controls.name.hasError('required')">This email is required</p>
-                            <p class="help is-danger" *ngIf="formProduct.controls.name.hasError('minlength')">This email is too short</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.name.hasError('required')">Nhập tên sản phẩm</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.name.hasError('minlength')">Tên sản phẩm quá ngắn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control has-icon">
+                        <input appMinValueValidator="0" appNumberValidator class="input" required [ngClass]="{'is-danger': formProduct.controls.price.invalid && formProduct.controls.price.touched}"
+                            formControlName="price" name="price" type="text" placeholder="Giá">
+                        <span class="icon is-small"><i class="fa fa-money"></i></span>
+
+                        <div *ngIf="formProduct.controls.price.touched">
+                            <p class="help is-danger" *ngIf="formProduct.controls.price.hasError('required')">Nhập giá cho sản phẩm</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.price.hasError('appNumberValidator')">Dường như không phải một giá trị hợp lệ</p>
+                            <p class="help is-danger" *ngIf="validate.price">{{validate.price}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control has-icon">
+                        <input appMinValueValidator="0" appNumberValidator appIntegerValidator class="input" required [ngClass]="{'is-danger': formProduct.controls.total.invalid && formProduct.controls.total.touched}"
+                            formControlName="total" name="total" type="text" placeholder="Số lượng">
+                        <span class="icon is-small"><i class="fa fa-ticket"></i></span>
+
+                        <div *ngIf="formProduct.controls.total.touched">
+                            <p class="help is-danger" *ngIf="formProduct.controls.total.hasError('required')">Bạn cần nhập số lượng</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.total.hasError('appNumberValidator')">Dường như số lượng không phải giá trị số</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.total.hasError('appIntegerValidator')">Số lượng phải là số nguyên</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.total.hasError('appMinValueValidator')">Số lượng phải là số nguyên</p>
+                            <p class="help is-danger" *ngIf="validate.total">{{validate.total}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="field">
                     <p class="control">
-                        <button [disabled]="formProduct.invalid" type="submit" [class.is-loading]="isFetching" class="button is-success">Save</button>
+                        <button [disabled]="formProduct.invalid" type="submit" [class.is-loading]="isFetching" class="button is-success">Lưu</button>
                     </p>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </div>

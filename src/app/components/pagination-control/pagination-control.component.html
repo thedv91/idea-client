@@ -1,0 +1,18 @@
+<nav class="pagination">
+    <a class="pagination-previous">Previous</a>
+    <a class="pagination-next">Next page</a>
+    <ul class="pagination-list">
+        <li>
+            <div class="control">
+                <select class="select" [(ngModel)]="limit" (ngModelChange)="onLimitChange($event)">
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="12">20</option>
+                </select>
+            </div>
+        </li>
+        <li *ngFor="let index of pageList">
+            <a class="pagination-link" (click)="goToPage(index)">{{index}}</a>
+        </li>
+    </ul>
+</nav>

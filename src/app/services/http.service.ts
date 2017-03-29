@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { RequestMethod, RequestOptionsArgs, Http, RequestOptions, Headers, Request } from "@angular/http";
 import { Observable } from "rxjs/Observable";
+import { environment } from "environments/environment";
 
 @Injectable()
 export class HttpService {
 
-    private urlRoot: string = 'http://localhost:8081/api/v1';
+    private urlRoot: string = environment.devHost;
 
     constructor(private _http: Http) {
-        this.urlRoot = 'http://localhost:8081/api/v1';
+        if (environment.production) {
+            this.urlRoot = environment.prodHost
+        }
     }
 
     private _createAuthHeaders(): Headers {

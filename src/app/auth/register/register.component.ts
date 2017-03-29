@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
+import { Router } from "@angular/router";
 
 import { AuthService } from "app/auth/auth.service";
 
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit, OnChanges {
 
     constructor(
         formBuilder: FormBuilder,
-        private authService: AuthService) {
+        private authService: AuthService,
+        private router: Router) {
 
         this.registerForm = formBuilder.group({
             username: new FormControl('', Validators.compose([Validators.minLength(5), Validators.required])),
@@ -41,6 +43,8 @@ export class RegisterComponent implements OnInit, OnChanges {
         this.isFetching = true;
         this.authService.register(this.registerForm.value).subscribe(response => {
             this.isFetching = false;
+            this.authService.onLogin.emit(true);
+            this.router.navigate(['/']);
         }, error => {
             this.isFetching = false;
             this.error = {

@@ -4,8 +4,8 @@
             <a class="nav-item" routerLink="">
                 <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
             </a>
-            <a routerLink="/products" routerLinkActive="is-active" class="nav-item is-tab is-hidden-mobile">Product</a>
-            <a routerLink="/about" routerLinkActive="is-active" class="nav-item is-tab is-hidden-mobile">About</a>
+            <a routerLink="/products" routerLinkActive="is-active" class="nav-item is-tab is-hidden-mobile">Sản phẩm</a>
+            <a routerLink="/about" routerLinkActive="is-active" class="nav-item is-tab is-hidden-mobile">Giới thiệu</a>
         </div>
         <span class="nav-toggle">
             <span></span>
@@ -13,12 +13,10 @@
         <span></span>
         </span>
         <div class="nav-right nav-menu">
-            <span class="nav-item">
+            <span class="nav-item logout-button">
             <a class="button is-danger" (click)="onLogoutClick()">
-                <span class="icon">
-          <i class="fa fa-power-off"></i>
-        </span>
-            <span>Logout</span>
+                <span class="icon"><i class="fa fa-power-off"></i></span>
+            <span>Đăng xuất</span>
             </a>
             </span>
         </div>

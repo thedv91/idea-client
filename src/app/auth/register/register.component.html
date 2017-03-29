@@ -7,12 +7,12 @@
                         <div class="field">
                             <div class="control has-icon">
                                 <input class="input" required [ngClass]="{'is-danger': registerForm.controls.username.invalid && registerForm.controls.username.touched}"
-                                    formControlName="username" name="username" type="text" placeholder="Username">
+                                    formControlName="username" name="username" type="text" placeholder="Tên đăng nhập">
                                 <span class="icon is-small"><i class="fa fa-user"></i></span>
 
                                 <div *ngIf="registerForm.controls.username.touched">
-                                    <p class="help is-danger" *ngIf="registerForm.controls.username.hasError('required')">This username is required</p>
-                                    <p class="help is-danger" *ngIf="registerForm.controls.username.hasError('minlength')">This username is too short</p>
+                                    <p class="help is-danger" *ngIf="registerForm.controls.username.hasError('required')">Tên đăng nhập không được để trống</p>
+                                    <p class="help is-danger" *ngIf="registerForm.controls.username.hasError('minlength')">Tên đăng nhập quá ngắn</p>
                                 </div>
                             </div>
                         </div>
@@ -23,43 +23,43 @@
                                 <span class="icon is-small"><i class="fa fa-envelope"></i></span>
 
                                 <div *ngIf="registerForm.controls.email.touched">
-                                    <p class="help is-danger" *ngIf="registerForm.controls.email.hasError('appEmailValidator')">This email is invalid</p>
-                                    <p class="help is-danger" *ngIf="registerForm.controls.email.hasError('required')">This email is required</p>
-                                    <p class="help is-danger" *ngIf="registerForm.controls.email.hasError('minlength')">This email is too short</p>
+                                    <p class="help is-danger" *ngIf="registerForm.controls.email.hasError('appEmailValidator')">Địa chỉ email không hợp lệ</p>
+                                    <p class="help is-danger" *ngIf="registerForm.controls.email.hasError('required')">Nhập vào địa chỉ email</p>
+                                    <p class="help is-danger" *ngIf="registerForm.controls.email.hasError('minlength')">Địa chỉ email quá ngắn</p>
                                 </div>
                             </div>
                         </div>
                         <div class="field">
                             <div class="control has-icon">
                                 <input class="input" required formControlName="password" [ngClass]="{'is-danger': registerForm.controls.password.invalid && registerForm.controls.password.touched}"
-                                    name="password" type="password" placeholder="Password" appEqualValidator="passwordConfirm" reverse="true">
+                                    name="password" type="password" placeholder="Mật khẩu" appEqualValidator="passwordConfirm" reverse="true">
                                 <span class="icon is-small"><i class="fa fa-lock"></i></span>
 
                                 <div *ngIf="registerForm.controls.password.touched">
                                     <p class="help is-danger" *ngIf="registerForm.controls.password.invalid">This password is invalid</p>
-                                    <p class="help is-danger" *ngIf="registerForm.controls.password.hasError('required')">This password is required</p>
-                                    <p class="help is-danger" *ngIf="registerForm.controls.password.hasError('appEqualValidator')">Password confirm mismatch</p>
+                                    <p class="help is-danger" *ngIf="registerForm.controls.password.hasError('required')">Vui lòng nhập mật khẩu</p>
+                                    <p class="help is-danger" *ngIf="registerForm.controls.password.hasError('appEqualValidator')">Mật khẩu không trùng khớp</p>
                                 </div>
                             </div>
                         </div>
                         <div class="field">
                             <div class="control has-icon">
                                 <input class="input" required [ngClass]="{'is-danger': registerForm.controls.passwordConfirm.invalid && registerForm.controls.passwordConfirm.touched}"
-                                    formControlName="passwordConfirm" name="passwordConfirm" type="password" placeholder="Confirm password"
+                                    formControlName="passwordConfirm" name="passwordConfirm" type="password" placeholder="Xác nhận mật khẩu"
                                     appEqualValidator="password" reverse="false">
                                 <span class="icon is-small"><i class="fa fa-lock"></i></span>
 
                                 <div *ngIf="registerForm.controls.passwordConfirm.touched">
                                     <p class="help is-danger" *ngIf="registerForm.controls.passwordConfirm.invalid">This password is invalid</p>
-                                    <p class="help is-danger" *ngIf="registerForm.controls.passwordConfirm.hasError('required')">This password is required</p>
-                                    <p class="help is-danger" *ngIf="registerForm.controls.passwordConfirm.hasError('appEqualValidator')">Password confirm mismatch</p>
+                                    <p class="help is-danger" *ngIf="registerForm.controls.passwordConfirm.hasError('required')">Xác nhận mật khẩu</p>
+                                    <p class="help is-danger" *ngIf="registerForm.controls.passwordConfirm.hasError('appEqualValidator')">Mật khẩu không trùng khớp</p>
                                 </div>
                             </div>
                         </div>
                         <div class="field">
                             <p class="control">
-                                <button [disabled]="registerForm.invalid" type="submit" [class.is-loading]="isFetching" class="button is-success">Register</button>
-                                Or <a routerLink="/auth/login">Login</a>
+                                <button [disabled]="registerForm.invalid" type="submit" [class.is-loading]="isFetching" class="button is-success">Đăng ký</button>
+                                Hoặc <a routerLink="/auth/login">Đăng nhập</a>
                             </p>
                         </div>
 
