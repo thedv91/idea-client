@@ -6,6 +6,7 @@ import { MediaComponent } from "app/modules/admin/media/media.component";
 import { ProductRouting } from "app/modules/admin/product/product-routing.module";
 import { UsersComponent } from "app/modules/admin/users/users.component";
 import { AuthGuard } from "app/shared/guard/auth.guard";
+import { RepositoryRouting } from "app/modules/admin/repository/repository-routing.module";
 
 const routes: Routes = [{
     path: 'admin',
@@ -16,12 +17,12 @@ const routes: Routes = [{
         component: UsersComponent
     }, {
         path: '',
-        redirectTo: 'products',
+        redirectTo: 'repository',
         pathMatch: 'full'
     }, {
         path: 'medias',
         component: MediaComponent
-    }, ...ProductRouting]
+    }, ...ProductRouting, ...RepositoryRouting]
 }];
 
 @NgModule({

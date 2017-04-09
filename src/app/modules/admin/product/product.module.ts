@@ -12,6 +12,7 @@ import { ComponentsModule } from "app/components/components.module";
 import { PipesModule } from "app/pipes/pipes.module";
 import { SharedModule } from "app/shared/shared.module";
 import { ProductRoutingModule } from "app/modules/admin/product/product-routing.module";
+import { LayoutComponent } from './layout/layout.component';
 
 
 
@@ -28,7 +29,7 @@ import { ProductRoutingModule } from "app/modules/admin/product/product-routing.
         NgxDatatableModule,
         SharedModule.forRoot()
     ],
-    declarations: [ProductListComponent, FormComponent, DetailComponent]
+    declarations: [ProductListComponent, FormComponent, DetailComponent, LayoutComponent]
 })
 export class ProductModule {
     static forRoot(): ModuleWithProviders {

@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { HttpService } from "app/services/http.service";
 import { ProductService } from "app/services/product.service";
+import { RepositoryService } from "app/services/repository.service";
 
 @NgModule({
     imports: [
         CommonModule
     ],
     declarations: [],
-    providers: [HttpService, ProductService]
+    providers: [HttpService, ProductService, RepositoryService]
 })
 
 export class ServicesModule {
@@ -18,7 +19,8 @@ export class ServicesModule {
             ngModule: ServicesModule,
             providers: [
                 HttpService,
-                ProductService
+                ProductService,
+                RepositoryService
             ]
         }
     }

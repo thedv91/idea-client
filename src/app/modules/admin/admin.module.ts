@@ -6,12 +6,14 @@ import { LayoutComponent } from './layout/layout.component';
 import { MediaComponent } from './media/media.component';
 import { UsersComponent } from './users/users.component';
 import { ProductModule } from "app/modules/admin/product/product.module";
+import { RepositoryModule } from "app/modules/admin/repository/repository.module";
 
 @NgModule({
     imports: [
         CommonModule,
         AdminRoutingModule,
-        ProductModule.forRoot()
+        ProductModule.forRoot(),
+        RepositoryModule.forRoot()
     ],
     declarations: [LayoutComponent, MediaComponent, UsersComponent]
 })

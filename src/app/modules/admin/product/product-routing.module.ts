@@ -6,13 +6,19 @@ import { AuthGuard } from "app/shared/guard/auth.guard";
 import { ProductListComponent } from "app/modules/admin/product/product-list.component";
 import { DetailComponent } from "app/modules/admin/product/detail/detail.component";
 import { FormComponent } from "app/modules/admin/product/form/form.component";
+import { LayoutComponent } from "app/modules/admin/product/layout/layout.component";
 
 const routes: Routes = [{
-    path: 'products',
-    component: ProductListComponent
-}, {
     path: 'product',
+    component: LayoutComponent,
     children: [{
+        path: '',
+        redirectTo: 'list',
+        pathMatch: 'full'
+    }, {
+        path: 'list',
+        component: ProductListComponent
+    }, {
         path: 'create',
         component: FormComponent
     }, {

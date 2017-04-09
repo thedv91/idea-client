@@ -14,8 +14,16 @@
             <div class="column">
                 <div class="field">
                     <div class="control has-icon">
-                        <input disabled class="input" formControlName="code" name="code" type="text" placeholder="Mã sản phẩm">
+                        <input class="input" required [ngClass]="{'is-danger': formProduct.controls.code.invalid && formProduct.controls.code.touched}"
+                            formControlName="code" name="code" type="text" placeholder="Mã sản phẩm">
                         <span class="icon is-small"><i class="fa fa-code"></i></span>
+
+                        <div *ngIf="formProduct.controls.code.touched">
+                            <p class="help is-danger" *ngIf="formProduct.controls.code.hasError('required')">Nhập mã sản phẩm</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.code.hasError('minlength')">Mã sản phẩm quá ngắn</p>
+                            <p class="help is-danger" *ngIf="formProduct.controls.code.hasError('maxlength')">Mã sản phẩm quá dài</p>
+                            <p class="help is-danger" *ngIf="validate.code">{{validate.code}}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="field">
@@ -59,15 +67,6 @@
                     </div>
                 </div>
                 <div class="field">
-                    <div class="control has-icon">
-                        <div class="select">
-                            <select formControlName="repositoryId" *ngIf="repositories.length">
-                                <option *ngFor="let repo of repositories" [value]="repo._id">{{repo.name}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
                     <p class="control">
                         <button [disabled]="formProduct.invalid" type="submit" [class.is-loading]="isFetching" class="button is-success">Lưu</button>
                     </p>
@@ -76,3 +75,5 @@
         </div>
     </form>
 </div>
+<br>
+<ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>

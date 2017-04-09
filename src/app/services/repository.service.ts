@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Response } from "@angular/http";
+import { Response } from '@angular/http';
 
-import { HttpService } from "app/services/http.service";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { HttpService } from "app/services/http.service";
+
+
 @Injectable()
-export class ProductService {
+export class RepositoryService {
 
 
-    private apiUrl = '/product';
+    private apiUrl = '/repository';
 
-    isLogedIn: boolean = false;
-
-    token: string;
-
-    constructor(private http: HttpService) {
-
-    }
+    constructor(private http: HttpService) { }
 
     getList(params: any = []): Observable<any> {
         return this.http.get(this.apiUrl, { params: params }).map((response: Response) => {
@@ -44,8 +40,8 @@ export class ProductService {
         });
     }
 
-    update(code: string, data: any): Observable<any> {
-        return this.http.put(`${this.apiUrl}/${code}`, data).map((response: Response) => {
+    addProduct(code: string, data: any): Observable<any> {
+        return this.http.post(`${this.apiUrl}/${code}/product`, data).map((response: Response) => {
             return response.json();
         }).catch((error: Response) => {
             return Observable.throw(error.json());
@@ -71,4 +67,5 @@ export class ProductService {
         }
 
     }
+
 }

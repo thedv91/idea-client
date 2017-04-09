@@ -68,6 +68,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }, {
             prop: 'total',
             name: 'Số lượng'
+        }, {
+            prop: 'repositoryId.name',
+            name: 'Kho'
         }];
 
         this.page(this.offset, this.limit);
